@@ -1,7 +1,9 @@
-- How to install Odoo 12 on Ubuntu 16.04 --
+# - How to install Odoo 12 on Ubuntu 16.04 --
 
-STEP 1
+# STEP 1
+```Unix
 sudo apt-get update
+```
 STEP 2
 sudo apt-get -y upgrade
 STEP 3
