@@ -115,3 +115,6 @@ sudo make -C sassc install
 
 STEP 19 
 Restart Odoo Server
+
+#CREDIT :
+https://github.com/mtsoftware2016/odoo-12/blob/master/guilde_installation_for_ubuntu_16.04.txt
