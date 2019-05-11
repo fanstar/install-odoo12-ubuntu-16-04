@@ -97,7 +97,66 @@ exit
 ```Unix
 sudo adduser --system --home=/opt/odoo --group odoo
 ```
+# Install Gdata
+### STEP 12 Create Data path "/opt/odoo"
+```Unix
+cd /opt/odoo
+sudo wget https://pypi.python.org/packages/a8/70/bd554151443fe9e89d9a934a7891aaffc63b9cb5c7d608972919a002c03c/gdata-2.0.18.tar.gz
+sudo tar zxvf gdata-2.0.18.tar.gz
+```
+### STEP 13 Take action by root user and install python package
+```Unix
+sudo chown -R odoo: gdata-2.0.18
+sudo -s
+cd gdata-2.0.18/
+python setup.py install
+```
+### STEP 14 exit from root user
+```Unix
+exit
+```
 
+# Odoo Project from GitHub [setup data folder]
+### STEP 15 Go to "/opt/odoo" and enter "odoo user"
+```Unix
+cd /opt/odoo
+sudo su - odoo -s /bin/bash
+git clone https://www.github.com/odoo/odoo --depth 1 --branch 12.0 --single-branch
+```
+Exit from "odoo user"
+```Unix
+exit
+```
+### STEP 15 Create Log file path
+```Unix
+sudo mkdir /var/log/odoo
+sudo chown -R odoo:root /var/log/odoo
+```
+### STEP 16 Create and Edit Odoo configuration file
+```Unix
+sudo nano /etc/odoo.conf
+```
+Put this setting in config file [Default odoo-server.conf] 
+AddonsPath is important!
+```Unix
+[options]
+
+; This is the password that allows database operations:
+
+; admin_passwd = admin
+
+db_host = False
+
+db_port = False
+
+db_user = odoo
+
+db_password = False
+
+logfile = /var/log/odoo/odoo-server.log
+
+addons_path = /opt/odoo/addons,/opt/odoo/odoo/addons
+```
 
 sudo apt-get install -y npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
