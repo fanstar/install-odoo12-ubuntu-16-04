@@ -1,5 +1,5 @@
 ## - How to install Odoo 12 on Ubuntu 16.04 --
-
+# Odoo System Dependencies
 ### STEP 1
 ```Unix
 sudo apt-get update
@@ -30,9 +30,75 @@ INSTALL ssl on ubuntu
 ```Unix
 sudo apt-get install libssl-dev
 ```
+# Odoo Web Dependencies
+### STEP 3
+```Unix
+sudo apt-get install -y npm
+```
+### STEP 4 Link node to user node
+```Unix
+sudo apt-get install -y npm
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+```
+### STEP 5 setup web lib
+```Unix
+sudo npm install -g less less-plugin-clean-css
+sudo apt-get install node-less
+sudo python3 -m pip install libsass
+sudo apt install python-pip
+sudo pip install --upgrade pip
+```
+
+# Odoo Database [postgreSQL] Dependencies
+### STEP 6 Install PostgreSQL 9.6+
+```Unix
+sudo apt-get install python3-software-properties
+```
+### STEP 7 Add source list
+```Unix
+sudo nano /etc/apt/sources.list.d/pgdg.list
+```
+Put this line [ ctrl+o == save , ctrl+x == exit ]
+```Unix
+deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+```
+STEP 8 get Key access
+```Unix
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+```
+### STEP 8 install postgreSQL
+```Unix
+sudo apt-get install postgresql-9.6
+```
+### STEP 9 Change TimeZone to 'UTC' DB for postgreSQL
+>> scroll down to bottom <<
+```Unix
+#timezone = 'localtime'
+timezone = 'UTC'
+```
+
+### STEP 10 Create User for postgreSQL DB
+```Unix
+sudo su postgres
+```
+Use cd to root path
+```Unix
+cd
+```
+Create user odoo
+```Unix
+createuser -s odoo
+createuser -s ubuntu_user_name
+createuser -s root
+exit
+```
+### STEP 11 Create path and group for odoo user 
+```Unix
+sudo adduser --system --home=/opt/odoo --group odoo
+```
 
 
-STEP 4
 sudo apt-get install -y npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 sudo npm install -g less less-plugin-clean-css
