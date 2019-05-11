@@ -2,13 +2,13 @@
 
 ### STEP 1
 ```Unix
-$ sudo apt-get update
-$ sudo apt-get -y upgrade
+sudo apt-get update
+sudo apt-get -y upgrade
 ```
 ### STEP 2
 Install Python Dependencies for Odoo 12
 ```Unix
-$ sudo apt install git python3-pip build-essential wget python3-dev python3-venv python3-wheel libxslt-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less
+sudo apt install git python3-pip build-essential wget python3-dev python3-venv python3-wheel libxslt-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less
 ```
 INSTALL DEPENDENCIES USING PIP3
 ```Unix
@@ -16,12 +16,19 @@ $ pip3 install Babel decorator docutils ebaysdk feedparser gevent greenlet html2
 ```
 INSTALL psycopg2 on Python3
 ```Unix
-$ sudo apt-get install python3-dev
-$ pip3 install psycopg2
+sudo apt-get install python3-dev
+pip3 install psycopg2
 ```
+if get Error ==> Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-ggml4lwf/psycopg2/
+Use this command
+```Unix
+sudo apt-get install python3-dev
+sudo apt-get install python3-psycopg2
+```
+
 INSTALL ssl on ubuntu
 ```Unix
-$ sudo apt-get install libssl-dev
+sudo apt-get install libssl-dev
 ```
 
 
