@@ -197,6 +197,15 @@ If success you will get message like this
 ```Unix
 http://localhost:8069
 ```
+If get Error , Please try run "./odoo-bin" in root user
+```Unix
+2019-05-11 14:45:27,232 13675 ERROR ? werkzeug: Error on request:
+
+sudo -s
+./odoo-bin
+```
+
+
 
 
 
