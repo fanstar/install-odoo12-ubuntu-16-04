@@ -17,7 +17,7 @@ $ pip3 install Babel decorator docutils ebaysdk feedparser gevent greenlet html2
 INSTALL psycopg2 on Python3
 ```Unix
 $ sudo apt-get install python3-dev
-$ pip3 psycopg2
+$ pip3 install psycopg2
 ```
 INSTALL ssl on ubuntu
 ```Unix
