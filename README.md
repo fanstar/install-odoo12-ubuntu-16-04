@@ -1,15 +1,30 @@
-# - How to install Odoo 12 on Ubuntu 16.04 --
+## - How to install Odoo 12 on Ubuntu 16.04 --
 
-# STEP 1
+### STEP 1
 ```Unix
-sudo apt-get update
+$ sudo apt-get update
+$ sudo apt-get -y upgrade
 ```
-STEP 2
-sudo apt-get -y upgrade
-STEP 3
-sudo apt-get install python3-pip
+### STEP 2
+Install Python Dependencies for Odoo 12
+```Unix
+$ sudo apt install git python3-pip build-essential wget python3-dev python3-venv python3-wheel libxslt-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less
+```
 INSTALL DEPENDENCIES USING PIP3
-pip3 install Babel decorator docutils ebaysdk feedparser gevent greenlet html2text Jinja2 lxml Mako MarkupSafe mock num2words ofxparse passlib Pillow psutil psycogreen psycopg2 pydot pyparsing PyPDF2 pyserial python-dateutil python-openid pytz pyusb PyYAML qrcode reportlab requests six suds-jurko vatnumber vobject Werkzeug XlsxWriter xlwt xlrd
+```Unix
+$ pip3 install Babel decorator docutils ebaysdk feedparser gevent greenlet html2text Jinja2 lxml Mako MarkupSafe mock num2words ofxparse passlib Pillow psutil psycogreen pydot pyparsing PyPDF2 pyserial python-dateutil python-openid pytz pyusb PyYAML qrcode reportlab requests six suds-jurko vatnumber vobject Werkzeug XlsxWriter xlwt xlrd
+```
+
+INSTALL ssl on ubuntu
+```Unix
+$ sudo apt-get install libssl-dev
+```
+
+INSTALL psycopg2 on Python3
+```Unix
+$ sudo apt-get install python3-dev
+$ pip
+
 STEP 4
 sudo apt-get install -y npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
