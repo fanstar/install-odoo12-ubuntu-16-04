@@ -157,6 +157,43 @@ logfile = /var/log/odoo/odoo-server.log
 
 addons_path = /opt/odoo/addons,/opt/odoo/odoo/addons
 ```
+### STEP 17 Create Log file path
+```Unix
+sudo chown odoo: /etc/odoo.conf
+```
+
+# WKHTMLTOPDF ( Supported Version 0.12.1 ) for Odoo
+### STEP 18 Lib export html to pdf , 
+```Unix
+sudo wget https://builds.wkhtmltopdf.org/0.12.1.3/wkhtmltox_0.12.1.3-1~bionic_amd64.deb
+sudo apt install ./wkhtmltox_0.12.1.3-1~bionic_amd64.deb
+sudo cp /usr/local/bin/wkhtmltoimage /usr/bin/wkhtmltoimage
+sudo cp /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
+```
+Exit from "odoo user"
+```Unix
+exit
+```
+
+# START Odoo Server
+### STEP 19 ==> "./odoo-bin" command
+```Unix
+cd /opt/odoo/odoo
+./odoo-bin
+```
+
+If success you will get message like this
+```Unix
+2019-05-11 14:37:04,529 13607 INFO ? odoo: Odoo version 12.0
+2019-05-11 14:37:04,529 13607 INFO ? odoo: addons paths: ['/home/ubuntu/.local/share/Odoo/addons/12.0', '/opt/odoo/odoo/odoo/addons', '/opt/odoo/odoo/addons']
+2019-05-11 14:37:04,530 13607 INFO ? odoo: database: default@default:default
+2019-05-11 14:37:04,918 13607 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf
+2019-05-11 14:37:04,952 13607 INFO ? odoo.addons.base.models.ir_actions_report: Wkhtmltopdf seems to be broken.
+2019-05-11 14:37:05,298 13607 INFO ? odoo.service.server: HTTP service (werkzeug) running on erpbiz:8069
+```
+
+
+
 
 sudo apt-get install -y npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
@@ -227,6 +264,9 @@ logfile = /var/log/odoo/odoo-server.log
 addons_path = /opt/odoo/addons,/opt/odoo/odoo/addons
 
 ---------------------------------------------------
+
+sudo chown odoo: /etc/odoo.conf
+
 
 sudo chown odoo: /etc/odoo.conf
 STEP 12
