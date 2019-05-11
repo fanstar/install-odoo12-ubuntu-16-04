@@ -89,14 +89,19 @@ cd
 Create user odoo
 ```Unix
 createuser -s odoo
-createuser -s ubuntu_user_name
-createuser -s root
 exit
 ```
 ### STEP 11 Create path and group for odoo user 
 ```Unix
 sudo adduser --system --home=/opt/odoo --group odoo
 ```
+### Important add "odoo" user to "sudo" Group , if you get error pemission when startup your website
+```Unix
+sudo -s
+usermod -aG sudo odoo
+exit
+```
+
 # Install Gdata
 ### STEP 12 Create Data path "/opt/odoo"
 ```Unix
