@@ -211,119 +211,59 @@ sudo -s
 ```
 
 
-
-
-
-
-sudo apt-get install -y npm
-sudo ln -s /usr/bin/nodejs /usr/bin/node
-sudo npm install -g less less-plugin-clean-css
-sudo apt-get install node-less
-STEP 5
-sudo apt-get install python-software-properties
-sudo vim /etc/apt/sources.list.d/pgdg.list
-add a line for the repository
-deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install postgresql-9.6
-STEP 6
-Create Database user for Odoo
-sudo su postgres
-cd
-createuser -s odoo
-createuser -s ubuntu_user_name
-exit
-STEP 7
-Create Odoo user and group
-sudo adduser --system --home=/opt/odoo --group odoo
-STEP 8
-Install Gdata
-cd /opt/odoo
-sudo wget https://pypi.python.org/packages/a8/70/bd554151443fe9e89d9a934a7891aaffc63b9cb5c7d608972919a002c03c/gdata-2.0.18.tar.gz
-sudo tar zxvf gdata-2.0.18.tar.gz
-sudo chown -R odoo: gdata-2.0.18
-sudo -s
-cd gdata-2.0.18/
-python setup.py install
-exit
-STEP 9
-Odoo 11 Download from GitHub
-cd /opt/odoo
-sudo apt-get install git
-sudo su - odoo -s /bin/bash
-git clone https://www.github.com/odoo/odoo --depth 1 --branch 12.0 --single-branch
-exit
-STEP 10
-Create Odoo Log File
-sudo mkdir /var/log/odoo
-sudo chown -R odoo:root /var/log/odoo
-STEP 11
-Edit Odoo configuration file
-sudo gedit/etc/odoo.conf
-
-#Copy this lines and change with users and password 
-------------------------------------
-
-[options]
-
-; This is the password that allows database operations:
-
-; admin_passwd = admin
-
-db_host = False
-
-db_port = False
-
-db_user = odoo
-
-db_password = False
-
-logfile = /var/log/odoo/odoo-server.log
-
-addons_path = /opt/odoo/addons,/opt/odoo/odoo/addons
-
----------------------------------------------------
-
-sudo chown odoo: /etc/odoo.conf
-
-
-sudo chown odoo: /etc/odoo.conf
-STEP 12
-sudo apt-get -f install
-sudo wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
-sudo dpkg -i wkhtmltox-0.12.1_linux-trusty-amd64.deb
-sudo cp /usr/local/bin/wkhtmltoimage /usr/bin/wkhtmltoimage
-sudo cp /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
-STEP 13
-Run Odoo Server
+# Create Service And Register System Service
+### STEP 21 Use PM2 
+```Unix
+sudo npm install pm2 -g
+```
+### STEP 22 Create Shell file 
+```Unix
 cd /opt/odoo/odoo
+sudo nano odooscript.sh
+```
+Put script command 
+```Unix
+python3 ./odoo-bin
+```
+### STEP 23 Create service by PM2
+use service name "odoo"
+```Unix
+pm2 start odooscript.sh --name "odoo"
+```
 
-./odoo-bin
-STEP 14
-Open browser on :
-http://localhost:8069
+If get Error like this , Error from node v.4.2.6
+```Unix
+/usr/local/lib/node_modules/pm2/node_modules/needle/node_modules/debug/src/node.js:132
+        let val = process.env[key];
+        ^^^
 
-STEP 15
+SyntaxError: Block-scoped declarations (let, const, function, class) not yet supported outside strict mode
+```
+Please check node version, at least node v8.x +
+```Unix
+node -v
+```
+Update node to v8.xx (v8.16.0)
+```Unix
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node -v
+```
 
-cd /usr/local/lib/
-sudo git clone https://github.com/sass/sassc.git --branch 3.4.2 --depth 1
-sudo git clone https://github.com/sass/libsass.git --branch 3.4-stable --depth 1
-sudo git clone https://github.com/sass/sass-spec.git --depth=1
+### STEP 24 Register service to system
+Register
+```Unix
+pm2 startup
+```
+Remove
+```Unix
+pm2 unstartup
+```
+# Work! and Good luck
 
-STEP 16
-echo 'SASS_LIBSASS_PATH="/usr/local/lib/libsass"' | sudo tee -a /etc/environment
-source /etc/environment
+Referral like:
+https://www.getopenerp.com/install-odoo-12-on-ubuntu-18-04/
+https://linuxize.com/post/how-to-create-a-sudo-user-on-ubuntu/
+https://github.com/JeffreyWay/laravel-mix/issues/264
+https://stackoverflow.com/questions/20863295/how-do-i-install-psycopg2-for-python-3-x
 
-STEP 17
-sudo make -C libsass
-
-STEP 18
-sudo make -C sassc
-sudo make -C sassc install
-
-STEP 19 
-Restart Odoo Server
-
-#CREDIT :
-https://github.com/mtsoftware2016/odoo-12/blob/master/guilde_installation_for_ubuntu_16.04.txt
