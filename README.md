@@ -14,16 +14,16 @@ INSTALL DEPENDENCIES USING PIP3
 ```Unix
 $ pip3 install Babel decorator docutils ebaysdk feedparser gevent greenlet html2text Jinja2 lxml Mako MarkupSafe mock num2words ofxparse passlib Pillow psutil psycogreen pydot pyparsing PyPDF2 pyserial python-dateutil python-openid pytz pyusb PyYAML qrcode reportlab requests six suds-jurko vatnumber vobject Werkzeug XlsxWriter xlwt xlrd
 ```
-
+INSTALL psycopg2 on Python3
+```Unix
+$ sudo apt-get install python3-dev
+$ pip3 psycopg2
+```
 INSTALL ssl on ubuntu
 ```Unix
 $ sudo apt-get install libssl-dev
 ```
 
-INSTALL psycopg2 on Python3
-```Unix
-$ sudo apt-get install python3-dev
-$ pip
 
 STEP 4
 sudo apt-get install -y npm
