@@ -192,6 +192,12 @@ If success you will get message like this
 2019-05-11 14:37:05,298 13607 INFO ? odoo.service.server: HTTP service (werkzeug) running on erpbiz:8069
 ```
 
+# Testing Connect website
+### STEP 20
+```Unix
+http://localhost:8069
+```
+
 
 
 
